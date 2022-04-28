@@ -5,10 +5,14 @@
   "license": "",
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
+    "build": "run-s build:*",
+    "build:css": "npm run generate:css -- --minify",
+    "build:remix": "remix build",
     "dev": "remix build && run-p dev:*",
+    "dev:css": "npm run generate:css -- --watch",
     "dev:node": "cross-env NODE_ENV=development nodemon ./server.js --watch ./server.js",
     "dev:remix": "remix watch",
+    "generate:css": "npx tailwindcss -o ./app/styles.css",
     "start": "cross-env NODE_ENV=production node ./server.js"
   },
   "dependencies": {
@@ -30,6 +34,7 @@
     "eslint": "^8.11.0",
     "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.0.24",
     "typescript": "^4.5.5"
   },
   "engines": {
